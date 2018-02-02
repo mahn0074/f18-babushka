@@ -18,7 +18,7 @@
             height: 250px;
             background-image: url(spoon.jpeg);
             background-repeat: no-repeat;
-            width: 100%;
+            width: cover;
             align-items: center;
         }
 
@@ -61,6 +61,14 @@
             font-family: 'Amita', cursive;
             font-weight: 400;
             text-align: center;
+        }
+
+        footer {
+            height: 80px;
+            background-color: #d1ba7e;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 15px;
 
         }
 
@@ -103,6 +111,17 @@
         <h1>Bistro Babushka</h1>
         <h2>Russisk Take Away I København</h2>
     </header>
+    <nav>
+        <button id="filter-alle">Alle</button>
+        <button id="filter-forretter">Forretter</button>
+        <button id="filter-hovedretter">Hovedretter</button>
+        <button id="filter-desserter">Desserter</button>
+        <button id="filter-drikkevarer">Drikkevarer</button>
+
+    </nav>
+    <main>
+        <h1 id="overskrift"> Menu</h1>
+    </main>
     <div class="templatemodtager"></div>
 
     <template class="mytemplate">
@@ -114,6 +133,7 @@
               </div>
         </template>
     <footer>
+        Adresse: Lygten 16<br>Åbeningstider:
     </footer>
 
 
@@ -127,14 +147,46 @@
     document.addEventListener("DOMContentLoaded", loadJson);
 
     async function loadJson() {
+
+        // hent json
         let menuList = await fetch("menu.json");
         menu = await menuList.json();
         console.log(menu);
 
-        visMenu(menu);
+        //find rog filtrer etter efter kategori og gem dem i nyt array
+        let forretter = menu.filter(ret => ret.kategori == "forretter");
+        let hovedretter = menu.filter(ret => ret.kategori == "hovedretter");
+        let desserter = menu.filter(ret => ret.kategori == "desserter");
+        let drikkevarer = menu.filter(ret => ret.kategori == "drikkevarer");
+
+        document.querySelector("#filter-alle").addEventListener("click", () => {
+            visMenu(menu, "Menu")
+        });
+        document.querySelector("#filter-forretter").addEventListener("click", () => {
+            visMenu(forretter, "Forretter")
+        });
+        document.querySelector("#filter-hovedretter").addEventListener("click", () => {
+            visMenu(hovedretter, "Hovedretter")
+        });
+
+        document.querySelector("#filter-desserter").addEventListener("click", () => {
+            visMenu(desserter, "Desserter")
+        });
+
+        document.querySelector("#filter-drikkevarer").addEventListener("click", () => {
+            visMenu(drikkevarer, "Drikkevarer")
+        });
+
+
+        visMenu(menu, "Menu");
     }
 
-    function visMenu(menu) {
+    function visMenu(menu, overskrift) {
+        document.querySelector("#overskrift").textContent = overskrift;
+        modtager.innerHTML = "";
+
+
+        // for hver ret
         menu.forEach(hverMenu => {
             let klon = template.cloneNode(true).content;
 
