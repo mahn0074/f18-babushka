@@ -5,97 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Babushka</title>
+    <link rel="stylesheet" href="styl.css">
     <link href="https://fonts.googleapis.com/css?family=Amita|Berkshire+Swash" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: rgba(191, 141, 13, 0.37);
-
-        }
-
-        header {
-            height: 250px;
-            background-image: url(spoon.jpeg);
-            background-repeat: no-repeat;
-            width: 100%;
-            align-items: center;
-        }
-
-        header h1 {
-            background-color: rgba(191, 141, 13, 0.38);
-            font-size: 4.75em;
-        }
-
-        .templatemodtager {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            /*            max-width: 1000px;*/
-            /*            margin: 0 auto;*/
-            grid-gap: 10px;
-
-
-        }
-
-        .menu {
-            background-color: #d1ba7e;
-            padding: 20px;
-            /* grid-template-columns: repeat(2, 1fr);*/
-            border: 5px #FE0A01;
-            border-radius: 15px;
-        }
-
-        h1 {
-            background-color: #bf8d0d;
-            padding: 5px;
-            /*            font-family: 'Berkshire Swash', cursive;*/
-            font-family: 'Amita', cursive;
-            font-weight: 400;
-            text-align: center;
-        }
-
-        h2 {
-
-            background-color: rgba(191, 141, 13, 0.38);
-            padding: 2px;
-            font-family: 'Amita', cursive;
-            font-weight: 400;
-            text-align: center;
-
-        }
-
-
-
-        /*------------mobil land..*/
-
-        @media screen and (min-width: 376px) and (max-width: 627px) {
-            .templatemodtager {
-                width: 100%;
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /*       tablet land..*/
-
-        @media screen and (min-width: 628px) and (max-width: 1024px) {
-            .templatemodtager {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-
-            }
-        }
-
-
-        /*        desktop*/
-
-        @media screen and (max-width: 1025px) and (max-width: 2560px) {
-            .templatemodtager {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -103,52 +15,43 @@
         <h1>Bistro Babushka</h1>
         <h2>Russisk Take Away I København</h2>
     </header>
-    <div class="templatemodtager"></div>
+    <section id="sectionwrap">
+        <nav>
+            <button id="filter-alle">Alle</button>
+            <button id="filter-forretter">Forretter</button>
+            <button id="filter-hovedretter">Hovedretter</button>
+            <button id="filter-desserter">Desserter</button>
+            <button id="filter-drikkevarer">Drikkevarer</button>
+            <!--            <button id="filter-sideorders">Sideorders</button>-->
+        </nav>
+        <main>
+            <h1 id="overskrift" data-overskrift> Menu</h1>
+            <section class="templatemodtager" data-templatemodtager>
+            </section>
+        </main>
 
-    <template class="mytemplate">
-        <div class="menu"> 
-            <h1 class="navn"></h1>
-            <img class="billede">
-            <p class="kortbeskrivelse"></p>
-            <p class="pris"></p>
-              </div>
+
+        <template data-template class="mytemplate">
+        <article class="menu" data-menu> 
+            <h1 class="navn" data-navn></h1>
+            <img class="billede" data-billede>
+            <p class="kortbeskrivelse" data-kortbeskrivelse></p>
+            <p class="pris" data-pris></p>
+              </article>
         </template>
+    </section>
     <footer>
+        <section>
+            <address>
+        Adresse: Lygten 16<br>1234 København
+                <aside>Åbeningstider:<br>Mandag-Fredag 10:30 - 22:00<br>Lørdag-Søndag 11:00 - 23:00
+                </aside>
+            </address>
+        </section>
     </footer>
 
 
 </body>
-<script>
-    let menu;
-    let modtager = document.querySelector(".templatemodtager");
-    let template = document.querySelector(".mytemplate");
-
-
-    document.addEventListener("DOMContentLoaded", loadJson);
-
-    async function loadJson() {
-        let menuList = await fetch("menu.json");
-        menu = await menuList.json();
-        console.log(menu);
-
-        visMenu(menu);
-    }
-
-    function visMenu(menu) {
-        menu.forEach(hverMenu => {
-            let klon = template.cloneNode(true).content;
-
-            klon.querySelector(".navn").textContent = hverMenu.navn;
-            klon.querySelector(".pris").textContent = hverMenu.pris + ", -Kr";
-            klon.querySelector(".kortbeskrivelse").textContent = hverMenu.kortbeskrivelse;
-            klon.querySelector(".billede").src = "imgs/small/" + hverMenu.billede + "-sm.jpg";
-            klon.querySelector(".billede").alt = "Billede af" + hverMenu.navn;
-
-            //            klon.querySelector(".billede").setAttribute("src", "imgs/small/" + hverMenu.billede + "-sm.jpg");
-
-            modtager.appendChild(klon);
-        })
-    }
-</script>
+<script src="babushka.js"></script>
 
 </html>
