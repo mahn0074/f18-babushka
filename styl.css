@@ -1,0 +1,159 @@
+ * {
+     margin: 0;
+     padding: 0;
+     background-color: rgba(191, 141, 13, 0.37);
+
+ }
+
+ img {
+     max-width: 100%;
+ }
+
+ h1 {
+     background-color: #bf8d0d;
+     padding: 5px;
+     /*            font-family: 'Berkshire Swash', cursive;*/
+     font-family: 'Amita', cursive;
+     font-weight: 400;
+     text-align: center;
+ }
+
+ h2 {
+
+     background-color: rgba(191, 141, 13, 0.38);
+     padding: 2px;
+     font-family: 'Amita', cursive;
+     font-weight: 400;
+     text-align: center;
+ }
+
+
+ header {
+     height: 250px;
+     background-image: url(spoon.jpeg);
+     background-repeat: no-repeat;
+     background-size: cover;
+     align-items: center;
+ }
+
+ header h1 {
+     background-color: rgba(191, 141, 13, 0.38);
+     font-size: 4.75em;
+ }
+
+ #sectionwrap {
+     display: flex;
+     justify-content: center;
+
+ }
+
+ nav {
+     background-color: #582c0c;
+ }
+
+ button {
+
+     background-color: #bf8d0d;
+     ;
+     height: 30px;
+     padding: 8px;
+     display: list-item;
+     border-radius: 30px;
+     align-items: center;
+     margin: 10px;
+
+
+ }
+
+
+ .templatemodtager {
+     display: grid;
+     grid-template-columns: 1fr;
+     /*
+     max-width: 1024px;
+     margin: 0 auto;
+*/
+     grid-gap: 10px;
+     background-color: #582c0c;
+
+
+ }
+
+
+ .menu {
+
+     padding: 20px;
+     border: 5px #FE0A01;
+     border-radius: 15px;
+
+ }
+
+ main {
+     margin-left: 10px;
+     margin-right: 10px;
+     /*     justify-content: end;*/
+ }
+
+ main h1 {
+     background-color: rgba(191, 141, 13, 0.37);
+
+ }
+
+ address {
+     height: 80px;
+     background-color: #d1ba7e;
+     padding: 20px;
+     margin-top: 10px;
+     border-radius: 15px;
+
+ }
+
+
+ /* ----------desktop*/
+
+ @media screen and (min-width: 1025px) {
+     .templatemodtager {
+         grid-template-columns: repeat(4, 1fr);
+
+     }
+ }
+
+
+ /*-----------tablet land..*/
+
+ @media screen and (min-width: 628px) and (max-width: 1024px) {
+     .templatemodtager {
+         grid-template-columns: repeat(3, 1fr);
+     }
+     header h1 {
+         font-size: 3em;
+     }
+     /*
+     .menu {
+         display: grid;
+         grid-column: 1 / 6;
+         grid-row: 2;
+
+
+     }
+*/
+ }
+
+
+ /*------------mobil land..*/
+
+ @media screen and (min-width: 376px) and (max-width: 627px) {
+     .templatemodtager {
+         grid-template-columns: 1fr;
+     }
+     h1 {
+         padding: 1px;
+         font-weight: 400;
+     }
+     header h1 {
+         font-size: 2.75em;
+     }
+     h2 {
+         font-size: 1.75em;
+     }
+ }
